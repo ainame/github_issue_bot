@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 $LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
 require "github_issuer"
 require "chatroid"
@@ -23,15 +24,15 @@ Chatroid.new do
         privmsg config[:channel], ":list: #{issue}"
       end
 
-    when/^#(\d+)/
+    when /^#(\d+)/
       issue = config[:client].get($1)
       privmsg config[:channel], ":show: #{issue}"
 
-    when /^create (.+)(?: \[(.+)\])?/
+    when /^create (\S+)(?: \[(.+)\])?/
       issue = config[:client].create($1, $2)
       privmsg config[:channel], ":created: #{issue}"
 
-    when /^edit #(\d+) (.+)(?: \[(.+)\])?/
+    when /^edit #(\d+) (\S+)(?: \[(.+)\])?/
       issue = config[:client].edit($1, $2)
       privmsg config[:channel], ":edited: #{issue}"
 
