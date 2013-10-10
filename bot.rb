@@ -18,7 +18,8 @@ Chatroid.new do
   )
 
   on_privmsg do |message|
-    case message.body
+    body = message.body.force_encoding("utf-8")
+    case body
     when /^list/
       config[:client].all.reverse_each do |issue|
         privmsg config[:channel], ":list: #{issue}"
