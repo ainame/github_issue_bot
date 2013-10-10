@@ -9,9 +9,11 @@ Chatroid.new do
   set :channel,  ENV["IRC_CHANNEL"]
   set :username, ENV["IRC_USERNAME"]
   set :client,   GithubIssuer.new(
-    :user  => ENV["GITHUB_USER"],
-    :token => ENV["GITHUB_TOKEN"],
-    :repo  => ENV["GITHUB_REPO"]
+    :user     => ENV["GITHUB_USER"],
+    :token    => ENV["GITHUB_TOKEN"],
+    :repo     => ENV["GITHUB_REPO"],
+    :site     => ENV["GITHUB_SITE"],
+    :endpoint => ENV["GITHUB_ENDPOINT"],
   )
 
   on_privmsg do |message|
